@@ -21,7 +21,7 @@
 
 (defn prewalk-split [x]
   (do
-    (println "prewalk trying: " (with-out-str (clojure.pprint/pprint x)))
+    (println "prewalk splitting: " (with-out-str (clojure.pprint/pprint x)))
     (if (sequential? x)
      (let [_count (count x)]
        (if (<= _count 1)
@@ -43,10 +43,8 @@
        (cond
          (nil? left-one) (recur [] (rest right) (conj accum right-one))
          (nil? right-one) (recur (rest left) [] (conj accum left-one))
-         :else
-         (if (<= left-one right-one)
-           (recur (rest left) right (conj accum left-one))
-           (recur left (rest right) (conj accum right-one))))))))
+         (<= left-one right-one) (recur (rest left) right (conj accum left-one))
+         :else (recur left (rest right) (conj accum right-one)))))))
 
 (defn postwalk-merge [x]
   (do
