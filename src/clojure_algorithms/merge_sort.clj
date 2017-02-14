@@ -33,24 +33,26 @@
 (defn prewalk-split-test []
   (w/prewalk prewalk-split [1 2 3 4 5]))
 
-(defn merge-it-2 [left right accum]
-  (do
-    (println "merge it 2: " (pp {:left left :right right :accum accum}))
-    (let [left-one (first left)
-         right-one (first right)]
-     (if (and (nil? left-one) (nil? right-one))
-       accum
-       (cond
-         (nil? left-one) (recur [] (rest right) (conj accum right-one))
-         (nil? right-one) (recur (rest left) [] (conj accum left-one))
-         (<= left-one right-one) (recur (rest left) right (conj accum left-one))
-         :else (recur left (rest right) (conj accum right-one)))))))
+(defn merge-it
+  ([left right] (merge-it left right []))
+  ([left right accum]
+   (do
+     (println "merge it 2: " (pp {:left left :right right :accum accum}))
+     (let [left-one (first left)
+           right-one (first right)]
+       (if (and (nil? left-one) (nil? right-one))
+         accum
+         (cond
+           (nil? left-one) (recur [] (rest right) (conj accum right-one))
+           (nil? right-one) (recur (rest left) [] (conj accum left-one))
+           (<= left-one right-one) (recur (rest left) right (conj accum left-one))
+           :else (recur left (rest right) (conj accum right-one))))))))
 
 (defn postwalk-merge [x]
   (do
     (println "postwalk merge: " (-> x clojure.pprint/pprint with-out-str))
     (if (and (sequential? x) (sequential? (first x)))
-      (merge-it-2 (first x) (first (rest x)) [])
+      (merge-it (first x) (first (rest x)))
       x)))
 
 (defn whole-test []
