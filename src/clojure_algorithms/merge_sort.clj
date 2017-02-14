@@ -52,7 +52,9 @@
   (do
     (println "postwalk merge: " (-> x clojure.pprint/pprint with-out-str))
     (if (and (sequential? x) (sequential? (first x)))
-      (merge-it (first x) (first (rest x)))
+      (let [one-of-two (get x 0)
+            two-of-two (get x 1)]
+        (merge-it one-of-two two-of-two))
       x)))
 
 (defn whole-test []
