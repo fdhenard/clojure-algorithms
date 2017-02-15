@@ -1,5 +1,5 @@
 (ns clojure-algorithms.merge-sort
-  )
+  (:require [clojure.walk :as w]))
 
 
 (defn pp [x] (-> x clojure.pprint/pprint with-out-str))
@@ -37,7 +37,7 @@
   ([left right] (merge-it left right []))
   ([left right accum]
    (do
-     (println "merge it 2: " (pp {:left left :right right :accum accum}))
+     (println "merge it: " (pp {:left left :right right :accum accum}))
      (let [left-one (first left)
            right-one (first right)]
        (if (and (nil? left-one) (nil? right-one))
