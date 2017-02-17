@@ -64,3 +64,22 @@
           (println "after prewalk: " (-> % clojure.pprint/pprint with-out-str))
           %))
        (w/postwalk postwalk-merge)))
+
+
+(defn attempt-2 [todo remaining done]
+  (do
+    (println "attempt 2: " (pp {:todo todo :remaining remaining :done done}))
+    (cond
+      (and (not (sequential? (first done))) (empty? todo) (empty? remaining))
+      done
+      (sequential? (first done))
+      (recur todo remaining (merge-it (get done 0) (get done 1)))
+      (empty? todo)
+      (recur (first remaining) (rest remaining) done)
+      (not (empty? todo))
+      (if (= (count todo) 1)
+        (recur [] remaining [todo done])
+        (let [mid (/ (count todo) 2)
+              [left right] (split-at mid todo)]
+          (recur left (cons right remaining) done)))
+      )))
