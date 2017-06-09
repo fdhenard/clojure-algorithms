@@ -3,6 +3,12 @@
             [clojure-algorithms.utils :as utils]))
 
 
+;; TODO as of 6/9/17:
+;; - add function arities for clean calls
+;; - add nicer test cases
+;; - comment printlns
+;; - add clojure.spec validations
+
 (s/def ::key string?)
 (s/def ::value string?)
 (s/def ::n int?)
