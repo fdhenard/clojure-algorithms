@@ -1,8 +1,9 @@
 (ns clojure-algorithms.merge-sort
-  (:require [clojure.walk :as w]))
+  (:require [clojure.walk :as w]
+            [clojure-algorithms.utils :as utils]))
 
 
-(defn pp [x] (-> x clojure.pprint/pprint with-out-str))
+;; (defn pp [x] (-> x clojure.pprint/pprint with-out-str))
 
 (defn walk-printer [text x]
   (do
@@ -37,7 +38,7 @@
   ([left right] (merge-it left right []))
   ([left right accum]
    (do
-     (println "merge it: " (pp {:left left :right right :accum accum}))
+     (println "merge it: " (utils/pp {:left left :right right :accum accum}))
      (let [left-one (first left)
            right-one (first right)]
        (if (and (nil? left-one) (nil? right-one))
@@ -68,7 +69,7 @@
 
 (defn attempt-2 [todo remaining done]
   (do
-    (println "attempt 2: " (pp {:todo todo :remaining remaining :done done}))
+    (println "attempt 2: " (utils/pp {:todo todo :remaining remaining :done done}))
     (cond
       (and (not (sequential? (first done))) (empty? todo) (empty? remaining))
       done
