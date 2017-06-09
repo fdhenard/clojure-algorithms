@@ -11,15 +11,17 @@
 (s/def ::right ::node)
 
 (defn test-it []
-  (s/valid? ::node
-            {::key "hi"
-             ::value 1
-             ::n 0
-             ::left {::key "what"
-                     ::value "nothing"
-                     ::n 0}
-             ::right {::key "hello"
-                      ::value "goodbye"
-                      ::n 0}
-             }))
+  (let [test-data {::key "hi"
+                   ::value "1"
+                   ::n 0
+                   ::left {::key "what"
+                           ::value "nothing"
+                           ::n 0}
+                   ::right {::key "hello"
+                            ::value "goodbye"
+                            ::n 0}
+                   }
+        is-valid(s/valid? ::node test-data)]
+    (when (not is-valid)
+      (s/explain ::node test-data))))
 
