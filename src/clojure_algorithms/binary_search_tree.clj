@@ -8,6 +8,7 @@
 ;; - add nicer test cases
 ;; - comment printlns
 ;; - add clojure.spec validations
+;; - add other "methods" (functions)
 
 (s/def ::key string?)
 (s/def ::value string?)
@@ -47,8 +48,7 @@
        (and (nil? bst) (nil? key))
        accum
        (and (nil? bst) (not (nil? key)))
-       (let [res {::key key ::val val}]
-         (assoc-in-or-res accum path res))
+       (assoc-in-or-res accum path {::key key ::val val})
        (< key (::key bst))
        (recur (::left bst) key val (conj path ::left) (assoc-in-or-res accum path (select-keys bst [::right ::key ::val])))
        (> key (::key bst))
