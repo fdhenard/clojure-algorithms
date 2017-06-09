@@ -81,5 +81,9 @@
         (recur [] remaining [todo done])
         (let [mid (/ (count todo) 2)
               [left right] (split-at mid todo)]
-          (recur left (cons right remaining) done)))
-      )))
+          (recur left (cons right remaining) done))))))
+
+
+
+(defn attempt-test []
+  (attempt-2 [5 2 1 2 4 2 3 3 3] nil nil))
