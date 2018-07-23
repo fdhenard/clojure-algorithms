@@ -1,6 +1,6 @@
-(ns clojure-algorithms.merge-sort
+(ns code-practice-clojure.merge-sort
   (:require [clojure.walk :as w]
-            [clojure-algorithms.utils :as utils]))
+            [code-practice-clojure.utils :as utils]))
 
 
 ;; (defn pp [x] (-> x clojure.pprint/pprint with-out-str))

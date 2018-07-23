@@ -1,4 +1,4 @@
-(defproject clojure-algorithms "0.1.0-SNAPSHOT"
+(defproject code-practice-clojure "0.1.0-SNAPSHOT"
   :description "Implementing some common algorithms in Clojure - F. Henard"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"

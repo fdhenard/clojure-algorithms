@@ -1,6 +1,6 @@
-(ns clojure-algorithms.binary-search-tree
+(ns code-practice-clojure.binary-search-tree
   (:require [clojure.spec :as s]
-            [clojure-algorithms.utils :as utils]))
+            [code-practice-clojure.utils :as utils]))
 
 
 ;; TODO as of 6/9/17:
