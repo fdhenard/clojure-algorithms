@@ -1,4 +1,4 @@
-# clojure-algorithms
+# code-practice-clojure
 
 Implementing some common algorithms in Clojure for practice sake.
 
