@@ -1,4 +1,4 @@
-(ns algorithms.core-test
+(ns code-practice-clojure.core-test
   (:require [clojure.test :refer :all]
             [algorithms.core :refer :all]))
 
